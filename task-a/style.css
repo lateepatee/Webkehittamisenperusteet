@@ -1,0 +1,16 @@
+/*
+Author: Lauri Tuikka
+Date: 2025-25-09
+*/
+body {
+    background-color: rgb(165, 178, 236);
+}
+
+h1 {
+    color: rgb(0, 0, 0);
+    font-size: 24px;
+}
+
+p {
+color: blueviolet;
+}
