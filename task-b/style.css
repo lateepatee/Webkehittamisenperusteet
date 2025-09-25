@@ -1,0 +1,31 @@
+/*
+Author: Lauri Tuikka
+Date: 2025-25-09
+*/
+body {
+    background-color: rgb(167, 238, 145);
+
+}
+
+h1 {
+    color: rgb(85, 44, 6);
+    font-size: 48px;
+}
+
+p {
+    color : rgb(221, 16, 16);
+}
+
+ul {
+    list-style-type: square;
+}
+
+ol {
+    list-style-type: upper-roman;
+}   
+
+a {
+    color: rgb(212, 233, 20);
+    background-color: black ;
+    font-weight: bold;
+}
