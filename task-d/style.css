@@ -1,0 +1,68 @@
+/*
+Author: Lauri Tuikka
+Date: 2025-09-10 
+*/
+body {
+    background: linear-gradient(#5a6369, #3eb1df);
+    padding-bottom: 1000px;
+}
+
+h1 {
+    color: blue;
+    text-align: center;
+}
+
+p {
+    font-size:16px;
+    color: #333; 
+}
+
+.box{
+    border: 2px solid #4CAF50;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+.highlight {
+    background-color: yellow;
+    font-weight: bold;
+}
+
+#special {
+    color: crimson;
+    font-style:italic;
+    text-decoration: underline;
+}
+
+h1, h2, h3 {
+    font-family: 'Arial', sans-serif;
+    margin-bottom: 10px;
+}
+
+section ul li {
+    list-style-type: square;
+    color: darkgreen;
+}
+
+a[target="_blank"] {
+    color: rgb(28, 104, 218);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+img[alt] {
+    border: 3px solid #555;
+   
+    max-width: 500px;
+    width: 100%;
+    height: 100%;
+    max-height: 500px;
+    
+    align-items: center;
+    flex-direction: column;
+    display: flex;
+    margin: 0 auto;
+
+}
+
+
