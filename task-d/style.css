@@ -1,68 +1,84 @@
 /*
 Author: Lauri Tuikka
-Date: 2025-09-10 
+Date: 2025-09-10
 */
+
 body {
-    background: linear-gradient(#5a6369, #3eb1df);
-    padding-bottom: 1000px;
+    background: linear-gradient(135deg, #e0e7eb, #c6dce8);
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+    color: #222;
+    line-height: 1.6;
+    padding-bottom: 100px;
+    margin: 0;
 }
 
 h1 {
-    color: blue;
+    color: #0d6efd;
     text-align: center;
+    font-size: 2.2rem;
+    margin-top: 40px;
 }
 
 p {
-    font-size:16px;
-    color: #333; 
+    font-size: 1rem;
+    color: #444; 
+    max-width: 700px;
+    margin: 10px auto;
 }
 
-.box{
-    border: 2px solid #4CAF50;
-    padding: 10px;
-    margin: 10px 0;
+.box {
+    border: 1px solid #d1d9de;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px auto;
+    background-color: #f9fbfc;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    max-width: 800px;
 }
 
 .highlight {
-    background-color: yellow;
-    font-weight: bold;
+    background-color: #ffef96;
+    font-weight: 600;
+    padding: 2px 6px;
+    border-radius: 4px;
 }
 
 #special {
-    color: crimson;
-    font-style:italic;
-    text-decoration: underline;
+    color: #e63946;
+    font-style: italic;
+    text-decoration: none;
+    font-weight: 600;
 }
 
 h1, h2, h3 {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Inter', sans-serif;
     margin-bottom: 10px;
 }
 
 section ul li {
-    list-style-type: square;
-    color: darkgreen;
+    list-style-type: disc;
+    color: #0b5345;
+    margin-left: 20px;
 }
 
 a[target="_blank"] {
-    color: rgb(28, 104, 218);
+    color: #0077b6;
     text-decoration: none;
-    font-weight: bold;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+a[target="_blank"]:hover {
+    color: #005b8f;
 }
 
 img[alt] {
-    border: 3px solid #555;
-   
-    max-width: 500px;
+    display: block;
+    border-radius: 12px;
+    border: none;
+    max-width: 600px;
     width: 100%;
-    height: 100%;
-    max-height: 500px;
-    
-    align-items: center;
-    flex-direction: column;
-    display: flex;
-    margin: 0 auto;
-
+    height: auto;
+    margin: 20px auto;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
-
-
