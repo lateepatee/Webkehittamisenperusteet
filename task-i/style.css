@@ -1,0 +1,549 @@
+:root {
+    /* Warm-muted palette */
+    --primary: #8B5E3C; /* warm terracotta/brown */
+    --accent: #6A9C95;  /* muted teal */
+    --secondary: #F6F2EE; /* soft cream for panels */
+    --background: #FBF9F6; /* warm off-white page background */
+    --card-bg: #FFF8F4; /* slightly warmer card background */
+    --text-dark: #2b2b2b;
+    --text-light: #6b6b6b;
+    --radius: 1rem;
+    --max-width: 1200px;
+    --font-main: "Marimekko", Arial, Helvetica, sans-serif;
+}
+
+/* Local font faces (woff2) placed in task-i/fonts/ */
+@font-face {
+    font-family: "Marimekko";
+    src: url("fonts/Marimekko-Thin.woff2") format("woff2");
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: "Marimekko";
+    src: url("fonts/Marimekko-Light.woff2") format("woff2");
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: "Marimekko";
+    src: url("fonts/Marimekko-Book.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: "Marimekko";
+    src: url("fonts/Marimekko-Bold.woff2") format("woff2");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: "Marimekko";
+    src: url("fonts/Marimekko-Black.woff2") format("woff2");
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+body {
+    font-family: var(--font-main);
+    margin: 0;
+    color: var(--text-dark);
+    background: var(--background);
+}
+
+header nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: linear-gradient(180deg, rgba(106,156,149,0.03), rgba(139,94,60,0.02));
+    backdrop-filter: blur(0.2px);
+}
+
+header nav h1 {
+    font-size: 2.5rem;
+    line-height: 1.1;
+    margin: 0;
+    color: var(--text-dark);
+}
+
+/* Hero heading size */
+#hero h2 {
+    font-size: 2rem;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+}
+
+@media (max-width: 700px) {
+    header nav h1 { font-size: 1.25rem; }
+    #hero h2 { font-size: 1.5rem; }
+}
+
+header ul {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+    padding: 0;
+    margin-left: auto; /* push the menu to the right, closer to the instagram button */
+}
+
+/* instagram link sits after the menu; no auto margin so menu can sit next to it */
+.instagram-link { margin-left: 0; }
+
+#hero {
+    text-align: center;
+    padding: 4rem 1rem;
+    max-width: var(--max-width);
+    margin: auto;
+    background: linear-gradient(180deg, rgba(250,245,242,0.6), rgba(255,255,255,0));
+}
+
+/* Layout for image + video side-by-side inside hero */
+.hero-media {
+    display: flex;
+    gap: 2.25rem;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1.75rem;
+    flex-wrap: wrap;
+}
+
+
+.hero-media figure {
+    margin: 0;
+}
+
+/* make the image take remaining space and the video a fixed vertical column */
+/* Hero-specific image styles (two-column layout) */
+#hero .hero-image {
+    flex: 1 1 60%;
+    /* Hero image height - increased for better presence */
+    min-height: 60vh;
+    max-height: 600px;
+    padding: 0; /* remove card padding for hero image */
+    background: none;
+    border-radius: calc(var(--radius) - 0.25rem);
+    box-shadow: none;
+    overflow: hidden;
+}
+
+/* keep product/image card variant unchanged (no generic overrides here) */
+
+.hero-video {
+    flex: 0 0 320px;
+    /* Match hero image height */
+    min-height: 60vh;
+    max-height: 600px;
+    padding: 0.5rem;
+    background: var(--card-bg);
+    border-radius: calc(var(--radius) - 0.25rem);
+    box-shadow: 0 8px 22px rgba(106,156,149,0.06);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-media img {
+    width: 100%;
+    height: auto;
+    border-radius: calc(var(--radius) - 0.25rem);
+    display: block;
+}
+
+/* Hero image should fill its container and crop if needed */
+#hero .hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.hero-media video {
+    width: 100%;
+    aspect-ratio: 9 / 16;
+    max-height: 720px;
+    object-fit: cover;
+    border-radius: calc(var(--radius) - 0.25rem);
+    display: block;
+}
+
+/* Hero video specific sizing */
+#hero .hero-video video {
+    max-height: 70vh;
+}
+
+/* secondary horizontal video placed under the hero image */
+.hero-secondary-video {
+    margin-top: 1.75rem;
+    padding: 0.5rem 0;
+}
+
+.hero-secondary-video video {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    max-width: 900px;
+    height: auto;
+    object-fit: cover;
+    border-radius: calc(var(--radius) / 2);
+    display: block;
+    margin: 0 auto;
+}
+
+@media (max-width: 900px) {
+    .hero-media {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    #hero {
+        text-align: center;
+    }
+    /* On smaller screens reduce hero height so content fits */
+    #hero .hero-image { min-height: 50vh; }
+    #hero .hero-video { width: 100%; max-width: 520px; }
+}
+
+section {
+    max-width: var(--max-width);
+    margin: auto;
+    padding: 3rem 1rem;
+}
+
+#products .product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+}
+
+/* Duplicate styling for the 'Astiat' products section (renamed id) */
+#products-astiat .product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+}
+
+/* Responsive fallbacks: 2 columns on medium screens, 1 column on small screens */
+@media (max-width: 1100px) {
+    #products .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    #products .product-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.product-card {
+    background: var(--card-bg);
+    padding: 1rem;
+    border-radius: var(--radius);
+    text-align: center;
+    border: 1px solid rgba(106,156,149,0.06);
+    transition: transform 220ms ease, box-shadow 220ms ease;
+}
+
+.product-card img {
+    width: 100%;
+    border-radius: var(--radius);
+}
+
+/* Hover zoom for product images */
+.product-card figure { overflow: hidden; }
+.product-card img {
+    transition: transform 220ms cubic-bezier(.2,.9,.2,1);
+    cursor: pointer;
+}
+.product-card:hover img,
+.product-card img:focus {
+    transform: scale(1.06);
+}
+
+.product-card:hover { transform: translateY(-6px); box-shadow: 0 14px 40px rgba(106,156,149,0.08); }
+
+/* Lightbox modal styles */
+.lightbox {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0,0,0,0.8);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 180ms ease, visibility 180ms ease;
+    z-index: 10000;
+}
+.lightbox.show { opacity: 1; visibility: visible; }
+.lightbox img {
+    max-width: 92%;
+    max-height: 92%;
+    border-radius: calc(var(--radius) / 2);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.6);
+}
+.lightbox .close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: transparent;
+    color: #fff;
+    border: none;
+    font-size: 1.6rem;
+    cursor: pointer;
+}
+
+#cta {
+    text-align: center;
+    padding: 3rem 1rem;
+    background: var(--secondary);
+    border-radius: var(--radius);
+}
+
+/* Contact form styles */
+#contact-form,
+#contact-form .form-grid {
+    width: 100%;
+}
+
+#contact-form {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    align-items: start;
+}
+
+.form-row.full {
+    grid-column: 1 / -1;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.35rem;
+    font-weight: 600;
+}
+
+input[type="text"],
+input[type="tel"],
+input[type="email"],
+textarea {
+    width: 100%;
+    padding: 0.6rem 0.75rem;
+    border-radius: 0.6rem;
+    border: 1px solid #dcdcdc;
+    font-family: inherit;
+    box-sizing: border-box;
+}
+
+textarea { resize: vertical; }
+
+.form-actions { text-align: right; }
+
+.form-actions button {
+    padding: 0.6rem 1.2rem;
+    background: var(--accent);
+}
+
+.required { color: #c23; font-weight: 600; margin-left: 0.2rem; }
+
+@media (max-width: 700px) {
+    .form-grid { grid-template-columns: 1fr; }
+    .form-actions { text-align: center; }
+}
+
+button {
+    padding: 0.75rem 1.5rem;
+    background: var(--primary);
+    border: none;
+    border-radius: var(--radius);
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+button:hover { filter: brightness(0.96); }
+
+footer {
+    text-align: center;
+    padding: 2rem;
+    background: var(--secondary);
+}
+
+/* Back to top button */
+#to-top {
+    position: fixed;
+    right: 1.25rem;
+    bottom: 1.25rem;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: none;
+    background: var(--primary);
+    color: white;
+    font-size: 1.1rem;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(8px);
+    transition: opacity 220ms ease, transform 220ms ease, visibility 220ms;
+    z-index: 9999;
+}
+
+#to-top.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+#to-top:focus { outline: 3px solid rgba(42,111,219,0.25); }
+
+/* Contact info styles */
+#contact-info { text-align: left; padding-top: 0.5rem; }
+#contact-info h2 { margin-top: 0; margin-bottom: 0.5rem; }
+#contact-info p { margin: 0.35rem 0; color: var(--text-light); }
+#contact-info .open-map {
+    margin-left: 0.6rem;
+    padding: 0.35rem 0.7rem;
+    font-size: 0.95rem;
+    background: transparent;
+    color: var(--primary);
+    border: 1px solid rgba(42,111,219,0.12);
+    border-radius: 0.6rem;
+}
+
+/* Map modal styles */
+.map-modal {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0,0,0,0.6);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 180ms ease, visibility 180ms ease;
+    z-index: 11000;
+}
+.map-modal.show { opacity: 1; visibility: visible; }
+.map-modal-content {
+    width: calc(100% - 4rem);
+    max-width: 1000px;
+    background: var(--card-bg);
+    border-radius: 0.6rem;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(106,156,149,0.12);
+    position: relative;
+}
+.map-wrapper { width: 100%; height: 60vh; }
+.map-wrapper iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+}
+.map-close {
+    position: absolute;
+    right: 0.6rem;
+    top: 0.6rem;
+    z-index: 2;
+    background: rgba(139,94,60,0.06);
+    border: none;
+    padding: 0.35rem 0.6rem;
+    border-radius: 0.45rem;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+@media (max-width: 700px) {
+    .map-wrapper { height: 50vh; }
+    .map-modal-content { width: calc(100% - 2rem); }
+}
+
+/* Opening hours styling inside contact-info */
+.opening-hours { margin-bottom: 0.75rem; }
+.opening-hours h3 { margin: 0 0 0.35rem 0; font-size: 1rem; }
+.opening-hours ul { list-style: none; padding: 0; margin: 0; color: var(--text-light); }
+.opening-hours li { margin: 0.25rem 0; }
+.opening-hours li strong { color: var(--text-dark); font-weight: 600; margin-right: 0.35rem; }
+
+/* Modern visual refinements */
+:root { --ui-gap: 1.25rem; }
+
+/* Header / Nav - cleaner, elevated */
+header nav {
+    padding: 1.25rem 2.25rem;
+    box-shadow: 0 6px 20px rgba(106,156,149,0.06);
+}
+header nav h1 { font-size: 3rem; letter-spacing: -0.02em; }
+header ul { gap: 1.25rem; }
+header ul li a { color: var(--text-dark); text-decoration: none; font-weight: 600; padding: 0.4rem 0.6rem; border-radius: 0.5rem; transition: background 160ms ease, color 160ms ease; }
+header ul li a:hover { background: rgba(106,156,149,0.08); color: var(--primary); }
+
+/* Hero - big, airy, modern */
+#hero { padding: 5.5rem 1rem; }
+#hero h2 { font-size: 2.75rem; max-width: 900px; margin: 0.2rem auto 0.6rem auto; font-weight: 700; letter-spacing: -0.01em; color: var(--text-dark); }
+#hero p { font-size: 1.05rem; color: var(--text-light); max-width: 760px; margin: 0 auto; }
+
+.hero-cta, #map-btn { display: inline-block; margin-top: 1rem; padding: 0.9rem 1.25rem; border-radius: 999px; font-weight: 700; box-shadow: 0 10px 30px rgba(139,94,60,0.12); border: none; background: linear-gradient(90deg, var(--primary), rgba(139,94,60,0.9)); }
+.hero-cta:hover, #map-btn:hover { transform: translateY(-2px); }
+
+/* Section headings */
+section h2 { position: relative; display: inline-block; padding-bottom: 0.35rem; }
+section h2::after { content: ''; display: block; height: 4px; background: linear-gradient(90deg, var(--accent), rgba(106,156,149,0.35)); border-radius: 4px; margin-top: 0.5rem; width: 56%; opacity: 0.9; }
+
+/* Cards / Products - edge-to-edge images with soft chrome */
+.product-card figure { border-radius: calc(var(--radius) - 0.2rem); overflow: hidden; }
+.product-card img { transition: transform 300ms cubic-bezier(.2,.9,.2,1), filter 300ms ease; display: block; }
+.product-card:hover img { transform: scale(1.08); filter: saturate(1.03) contrast(1.02); }
+.product-card h3 { margin-top: 0.8rem; font-size: 1.05rem; }
+.product-card p { color: var(--text-light); font-size: 0.95rem; }
+
+/* Make grid feel more spacious on large screens */
+@media (min-width: 1400px) { #products .product-grid { gap: 2.75rem; } }
+
+/* Footer refinement */
+footer { color: var(--text-light); font-size: 0.95rem; }
+
+/* Subtle utility */
+.muted { color: var(--text-light); }
+
+/* Improve focus outlines for accessibility */
+a:focus, button:focus, input:focus { outline: 3px solid rgba(106,156,149,0.12); outline-offset: 3px; }
+
+/* Instagram button in header */
+
+.instagram-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    color: white;
+    text-decoration: none;
+    font-weight: 700;
+    padding: 0.45rem 0.6rem;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #f58529 0%, #dd2a7b 45%, #515bd4 100%);
+    box-shadow: 0 12px 30px rgba(139,94,60,0.12);
+    transition: transform 160ms ease, box-shadow 160ms ease, opacity 160ms;
+}
+.instagram-link svg { color: #fff; flex-shrink: 0; display:block; }
+.instagram-link .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+.instagram-link:hover { transform: translateY(-3px); opacity: 0.98; }
+
+@media (max-width: 900px) {
+    .instagram-link { padding: 0.45rem 0.6rem; font-size: 0.95rem; }
+    header nav h1 { font-size: 1.5rem; }
+}
