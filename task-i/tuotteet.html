@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="fi">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kulmakaappi Oy - Tuotteet</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <header>
+        <nav>
+            <h1><a href="index.html" style="text-decoration:none; color:inherit;">Kulmakaappi Oy</a></h1>
+            <ul>
+                <li><a href="index.html#about">Tietoa meistä</a></li>
+                <li><a href="tuotteet.html" class="active">Tuotteet</a></li>
+                <li><a href="index.html#features">Palvelut</a></li>
+                <li><a href="lomake.html">Ota yhteyttä</a></li>
+                <li><a href="index.html#contact-info">Yhteystiedot</a></li>
+            </ul>
+            <a class="instagram-link" href="https://www.instagram.com/kulmakaappi_oy" target="_blank">
+                <span class="inst-text">Seuraa</span>
+            </a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="product-intro" style="text-align: center; margin-bottom: 2rem;">
+            <h2>Tutustu myymäläämme</h2>
+            <video class="tuote-video" controls poster="kuvat/astia1.jpeg" preload="metadata">
+                <source src="videot/astiahylly.mp4" type="video/mp4">
+                Selaimesi ei tue videota.
+            </video>
+        </section>
+
+        <section id="products">
+            <h2>Laukut</h2>
+            <div class="product-grid">
+                <article class="product-card">
+                    <figure><img src="kuvat/grathat.jpeg" alt="Gratha laukku" /></figure>
+                    <h3>Gratha</h3>
+                    <p>Tyylikäs nahkalaukku.</p>
+                </article>
+                <article class="product-card">
+                    <figure><img src="kuvat/reput.jpeg" alt="Unikko reput" /></figure>
+                    <h3>Unikko reput</h3>
+                    <p>Uudet syksyn värit.</p>
+                </article>
+                <article class="product-card">
+                    <figure><img src="kuvat/unikkoreppu.jpeg" alt="Unikko" /></figure>
+                    <h3>Unikko laukut</h3>
+                    <p>Klassikkovärit.</p>
+                </article>
+                <article class="product-card">
+                    <figure><img src="kuvat/ruskeelaukku.jpeg" alt="syksy Gratha" /></figure>
+                    <h3>Gratha</h3>
+                    <p>Syksyn uutuusväri.</p>
+                </article>
+            </div>
+        </section>
+
+        <section id="products-astiat">
+            <h2>Astiat</h2>
+            <div class="product-grid">
+                <article class="product-card">
+                    <figure><img src="kuvat/astia1.jpeg" alt="astiahylly" /></figure>
+                    <h3>Klassikoita!</h3>
+                    <p>Meiltä löydät räsymatto- sekä Unikko-kuosit.</p>
+                </article>
+                <article class="product-card">
+                    <figure><img src="kuvat/astia2.jpeg" alt="Lautaset" /></figure>
+                    <h3>Siirtolapuutarha</h3>
+                    <p>Lautaset joka pöytään :-D</p>
+                </article>
+                <article class="product-card">
+                    <figure><img src="kuvat/astia3.jpeg" alt="Unikko" /></figure>
+                    <h3>Unikko</h3>
+                    <p>Klassikkovärit.</p>
+                </article>
+                <article class="product-card">
+                    <figure><img src="kuvat/astia4.jpeg" alt="Joulu" /></figure>
+                    <h3>Juhlapöytään</h3>
+                    <p>Joulun uutuudet.</p>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 Kulmakaappi Oy</p>
+        <nav>
+            <ul>
+                <li><a href="lomake.html">Ota yhteyttä</a></li>
+            </ul>
+        </nav>
+    </footer>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox" aria-hidden="true">
+        <button class="close">✕</button>
+        <img src="" alt="Laajennettu kuva" />
+    </div>
+
+    <script>
+        (function () {
+            const lightbox = document.getElementById('lightbox');
+            if (!lightbox) return;
+            const lbImg = lightbox.querySelector('img');
+            const closeBtn = lightbox.querySelector('.close');
+
+            const open = (src) => {
+                lbImg.src = src;
+                lightbox.classList.add('show');
+                document.body.style.overflow = 'hidden';
+            };
+            const close = () => {
+                lightbox.classList.remove('show');
+                document.body.style.overflow = '';
+            };
+
+            document.querySelectorAll('.product-card img').forEach(img => {
+                img.addEventListener('click', () => open(img.src));
+                img.style.cursor = 'zoom-in';
+            });
+
+            closeBtn.addEventListener('click', close);
+            lightbox.addEventListener('click', (e) => { if (e.target === lightbox) close(); });
+            document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+        })();
+    </script>
+</body>
+
+</html>
