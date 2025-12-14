@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fi">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kulmakaappi Oy - Ota yhteyttä</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <header>
+        <nav>
+            <h1><a href="index.html" style="text-decoration:none; color:inherit;">Kulmakaappi Oy</a></h1>
+            <ul>
+                <li><a href="index.html#about">Tietoa meistä</a></li>
+                <li><a href="tuotteet.html">Tuotteet</a></li>
+                <li><a href="index.html#features">Palvelut</a></li>
+                <li><a href="lomake.html" class="active">Ota yhteyttä</a></li>
+                <li><a href="index.html#contact-info">Yhteystiedot</a></li>
+            </ul>
+            <a class="instagram-link" href="https://www.instagram.com/kulmakaappi_oy" target="_blank">
+                <span class="inst-text">Seuraa</span>
+            </a>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Tässä on siirretty lomake-osio -->
+        <section id="cta">
+            <h2>Ota yhteyttä</h2>
+            <p>Onko sinulla kysyttävää tuotteistamme tai palveluistamme? Lähetä meille viesti!</p>
+            <br>
+            <form id="contact-form" action="#" method="post" novalidate>
+                <div class="form-grid">
+                    <div class="form-row">
+                        <label for="name">Nimi <span class="required">*</span></label>
+                        <input id="name" name="name" type="text" required />
+                    </div>
+
+                    <div class="form-row">
+                        <label for="phone">Puhelinnumero</label>
+                        <input id="phone" name="phone" type="tel" pattern="[0-9+\s-]+" placeholder="+358 40 123 4567" />
+                    </div>
+
+                    <div class="form-row">
+                        <label for="email">Sähköposti <span class="required">*</span></label>
+                        <input id="email" name="email" type="email" required />
+                    </div>
+
+                    <div class="form-row full">
+                        <label for="message">Viesti (valinnainen)</label>
+                        <textarea id="message" name="message" rows="4"
+                            placeholder="Kirjoita viestisi tähän..."></textarea>
+                    </div>
+
+                    <div class="form-row form-actions full">
+                        <button type="submit">Lähetä</button>
+                    </div>
+                </div>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 Kulmakaappi Oy</p>
+        <nav>
+            <ul>
+                <li><a href="index.html">Takaisin etusivulle</a></li>
+            </ul>
+        </nav>
+    </footer>
+</body>
+
+</html>

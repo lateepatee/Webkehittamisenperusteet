@@ -313,6 +313,11 @@ section h2::after {
     margin: 0;
 }
 
+.product-card p:last-child {
+    color: var(--primary);
+    font-weight: bold;
+}
+
 /* FEATURES & SCHOOL NOTE */
 .school-project-note {
     margin-top: 1rem;

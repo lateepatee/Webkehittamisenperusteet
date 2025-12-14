@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="fi">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kulmakaappi Oy - Etusivu</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <header>
+        <nav>
+            <h1><a href="index.html" style="text-decoration:none; color:inherit;">Kulmakaappi Oy</a></h1>
+            <ul>
+                <li><a href="index.html#about">Tietoa meistä</a></li>
+                <li><a href="tuotteet.html">Tuotteet</a></li>
+                <li><a href="index.html#features">Palvelut</a></li>
+                <li><a href="lomake.html">Ota yhteyttä</a></li>
+                <li><a href="#contact-info">Yhteystiedot</a></li>
+            </ul>
+            <a class="instagram-link" href="https://www.instagram.com/kulmakaappi_oy" target="_blank"
+                rel="noopener noreferrer">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                </svg>
+                <span class="inst-text">Seuraa</span>
+            </a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero">
+            <h2>Laadukasta designia Kokkolan ytimessä.</h2>
+            <p>Tule vierailulle ja ihastu!</p>
+
+            <div class="hero-media">
+                <!-- Video poistettu täältä, vain kuva jäljellä -->
+                <figure class="hero-image single-image">
+                    <img src="kuvat/firma.jpeg" alt="Kulmakaapin näyteikkuna" loading="lazy" />
+                </figure>
+            </div>
+            <!-- Painike poistettu täältä -->
+        </section>
+
+        <section id="about">
+            <h2>Me yrityksenä</h2>
+            <p>Kulmakaappi on kodin sisustamisen, muodin ja lahjatavaroiden tasokas erikoisliike Kokkolassa.
+                Valikoimistamme löydät kattavan valikoiman Marimekon tuotteita.</p>
+            <p>Marimekon mallistostamme löydät vuodevaatteet, keittiö- sekä kylpyhuonetekstiilit, astiat, laukut,
+                vaatteet sekä kankaat.</p>
+
+            <div class="hero-secondary-video about-video">
+                <video controls>
+                    <source src="videot/VaakavideoReggaemusa.mp4" type="video/mp4">
+                    Selaimesi ei tue videota.
+                </video>
+            </div>
+
+            <!-- Painike siirretty tänne About-osion loppuun -->
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="tuotteet.html" class="hero-cta">Katso tuotteet</a>
+            </div>
+        </section>
+
+        <section id="features">
+            <h2>Palvelut</h2>
+            <ul>
+                <li>Tarjoamme paikan päällä ompelupalvelua: ompelemme mielellämme liikkeestämme valitsemastasi kankaasta
+                    esimerkiksi verhot ja tyynyt.</li>
+                <li>Tuotteitamme on mahdollista tilata toimitusmyyntinä kaikkialle Suomeen.</li>
+                <li>Vuokraamme tyylikkäät laukut ja iltapuvut juhliin.</li>
+                <li class="school-project-note">HUOM: EMME OIKEASTI TARJOA VUOKRAPALVELUITA. TÄMÄ KOHTA LISÄTTY
+                    KOULUTEHTÄVÄNANNON VUOKSI.</li>
+            </ul>
+        </section>
+
+        <section id="contact-info">
+            <h2>Yhteystiedot</h2>
+            <p><strong>Osoite:</strong> Tehtaankatu 2b, 67100 Kokkola
+                <button class="open-map" data-address="Tehtaankatu 2b, 67100 Kokkola">Näytä reitti</button>
+            </p>
+            <div class="opening-hours">
+                <h3>Aukioloajat</h3>
+                <ul>
+                    <li><strong>Ma–Pe:</strong> 10:00–17:00</li>
+                    <li><strong>La:</strong> 10:00–15:00</li>
+                    <li><strong>Su:</strong> Suljettu</li>
+                </ul>
+            </div>
+            <p><strong>Puhelin:</strong> +358 45 3191110</p>
+            <p><strong>Sähköposti:</strong> kulmakaappi@kulmakaappi.fi</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 Kulmakaappi Oy</p>
+        <nav>
+            <ul>
+                <li><a href="#">Tietosuoja</a></li>
+                <li><a href="lomake.html">Ota yhteyttä</a></li>
+            </ul>
+        </nav>
+    </footer>
+
+    <!-- Map Modal -->
+    <div id="map-modal" class="map-modal" aria-hidden="true">
+        <div class="map-modal-content"><button class="map-close">✕</button>
+            <div class="map-wrapper"><iframe src="about:blank" title="Kartta"></iframe></div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const modal = document.getElementById('map-modal');
+            if (!modal) return;
+            const closeBtn = modal.querySelector('.map-close');
+            const openButtons = document.querySelectorAll('.open-map');
+            const iframe = modal.querySelector('iframe');
+
+            openButtons.forEach(btn => btn.addEventListener('click', () => {
+                iframe.src = `https://www.google.com/maps?q=${encodeURIComponent(btn.dataset.address)}&output=embed`;
+                modal.classList.add('show');
+            }));
+            const close = () => { modal.classList.remove('show'); iframe.src = ''; };
+            closeBtn.addEventListener('click', close);
+            modal.addEventListener('click', (e) => { if (e.target === modal) close(); });
+        });
+    </script>
+</body>
+
+</html>
