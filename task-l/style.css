@@ -1,26 +1,19 @@
 :root {
     /* Warm-muted palette */
     --primary: #8B5E3C;
-    /* warm terracotta/brown */
     --accent: #6A9C95;
-    /* muted teal */
     --secondary: #F6F2EE;
-    /* soft cream for panels */
     --background: #FBF9F6;
-    /* warm off-white page background */
     --card-bg: #FFF8F4;
-    /* slightly warmer card background */
     --text-dark: #2b2b2b;
     --text-light: #6b6b6b;
     --radius: 1rem;
     --max-width: 1200px;
     --ui-gap: 1.25rem;
-
-    /* Fallback if Marimekko font fails */
     --font-main: "Marimekko", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
-/* Local fonts setup - make sure files exist in fonts/ folder */
+/* Local fonts setup */
 @font-face {
     font-family: "Marimekko";
     src: url("fonts/Marimekko-Thin.woff2") format("woff2");
@@ -58,7 +51,6 @@
 
 html {
     scroll-behavior: smooth;
-    /* Makes anchor links slide nicely */
 }
 
 body {
@@ -78,7 +70,6 @@ header nav {
     background: rgba(251, 249, 246, 0.95);
     backdrop-filter: blur(5px);
     position: sticky;
-    /* Keeps menu at top */
     top: 0;
     z-index: 1000;
     box-shadow: 0 4px 20px rgba(139, 94, 60, 0.05);
@@ -88,6 +79,10 @@ header nav h1 {
     font-size: 1.8rem;
     line-height: 1.1;
     margin: 0;
+}
+
+.logo-link {
+    text-decoration: none;
     color: var(--text-dark);
 }
 
@@ -97,7 +92,6 @@ header ul {
     gap: 1.5rem;
     padding: 0;
     margin: 0 auto;
-    /* Centers the menu links */
     flex-wrap: wrap;
     justify-content: center;
 }
@@ -110,7 +104,8 @@ header ul li a {
     transition: color 0.2s;
 }
 
-header ul li a:hover {
+header ul li a:hover,
+header ul li a.active {
     color: var(--primary);
 }
 
@@ -138,7 +133,7 @@ header ul li a:hover {
     font-size: 0.9rem;
 }
 
-/* RESPONSIVE HEADER - Stacks content on mobile */
+/* RESPONSIVE HEADER */
 @media (max-width: 900px) {
     header nav {
         flex-direction: column;
@@ -197,50 +192,25 @@ section h2::after {
     display: none;
 }
 
-/* No underline for hero title */
-
 .hero-media {
     display: flex;
-    gap: 2rem;
     justify-content: center;
-    align-items: stretch;
     margin-top: 2rem;
-    flex-wrap: wrap;
 }
 
-.hero-image {
-    flex: 2;
-    min-width: 300px;
-    margin: 0;
+.hero-image.single-image {
+    flex: 0 1 900px;
+    margin: 0 auto;
+    max-height: 60vh;
 }
 
-.hero-image img {
+.hero-image.single-image img {
+    object-fit: cover;
     width: 100%;
     height: 100%;
-    object-fit: cover;
     border-radius: var(--radius);
-    max-height: 600px;
 }
 
-.hero-video {
-    flex: 1;
-    min-width: 280px;
-    margin: 0;
-    background: var(--card-bg);
-    padding: 0.5rem;
-    border-radius: var(--radius);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-}
-
-.hero-video video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: calc(var(--radius) - 0.5rem);
-    max-height: 600px;
-}
-
-/* Secondary video styling */
 .about-video video {
     width: 100%;
     max-width: 800px;
@@ -252,7 +222,6 @@ section h2::after {
 
 .hero-cta {
     display: inline-block;
-    margin-top: 2rem;
     padding: 0.8rem 2rem;
     background: var(--primary);
     color: white;
@@ -264,6 +233,11 @@ section h2::after {
 
 .hero-cta:hover {
     background: #6d4a30;
+}
+
+.cta-container {
+    text-align: center;
+    margin-top: 3rem;
 }
 
 /* PRODUCT GRID */
@@ -313,20 +287,34 @@ section h2::after {
     margin: 0;
 }
 
-.product-card p:last-child {
-    color: var(--primary);
-    font-weight: bold;
+/* UTILITIES */
+.center-text {
+    text-align: center;
 }
 
-/* FEATURES & SCHOOL NOTE */
+.mb-2 {
+    margin-bottom: 2rem;
+}
+
+/* Product Video Intro */
+.tuote-video {
+    width: 100%;
+    max-width: 360px;
+    aspect-ratio: 9 / 16;
+    object-fit: cover;
+    border-radius: 1rem;
+    display: block;
+    margin: 0 auto;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* SCHOOL NOTE */
 .school-project-note {
     margin-top: 1rem;
     color: #d64545;
-    /* Red warning color */
     font-weight: bold;
     font-style: italic;
     list-style-type: none;
-    /* No bullet point */
     font-size: 0.9rem;
     border: 2px dashed #d64545;
     padding: 1rem;
@@ -367,15 +355,51 @@ label {
     color: #d64545;
 }
 
+/* Lisää 'select' tähän listaan, jotta se näyttää samalta kuin inputit */
 input,
-textarea {
+textarea,
+select {
     width: 100%;
     padding: 0.8rem;
     border: 1px solid #ddd;
     border-radius: 0.5rem;
     box-sizing: border-box;
     font-family: inherit;
+    background-color: white;
+    /* Varmistaa valkoisen taustan selectille */
 }
+
+input:focus,
+textarea:focus,
+select:focus {
+    outline: 2px solid var(--accent);
+    border-color: transparent;
+}
+
+/* Uusi tyyli checkboxille */
+.checkbox-row {
+    display: flex;
+    align-items: center;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 400;
+    /* Ei lihavoitu */
+    cursor: pointer;
+}
+
+.checkbox-label input[type="checkbox"] {
+    width: auto;
+    /* Checkbox ei saa olla 100% leveä */
+    margin: 0;
+    width: 1.2rem;
+    height: 1.2rem;
+    cursor: pointer;
+}
+
 
 input:focus,
 textarea:focus {
@@ -404,31 +428,19 @@ button[type="submit"]:hover {
     }
 }
 
-/* FOOTER & CONTACT INFO */
-#contact-info button.open-map {
-    background: none;
-    border: 1px solid var(--primary);
+/* CONTACT LINKS */
+.contact-details a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.contact-details a:hover {
     color: var(--primary);
-    padding: 0.3rem 0.8rem;
-    border-radius: 0.5rem;
-    cursor: pointer;
-    margin-left: 0.5rem;
+    text-decoration: underline;
 }
 
-#contact-info button.open-map:hover {
-    background: var(--primary);
-    color: white;
-}
-
-.opening-hours ul {
-    padding-left: 0;
-    list-style: none;
-}
-
-.opening-hours li {
-    margin-bottom: 0.3rem;
-}
-
+/* FOOTER */
 footer {
     text-align: center;
     padding: 2rem;
@@ -450,32 +462,7 @@ footer a {
     text-decoration: none;
 }
 
-/* UTILITIES: BACK TO TOP */
-#to-top {
-    position: fixed;
-    bottom: 2rem;
-    right: 2rem;
-    width: 3rem;
-    height: 3rem;
-    border-radius: 50%;
-    background: var(--primary);
-    color: white;
-    border: none;
-    cursor: pointer;
-    opacity: 0;
-    visibility: hidden;
-    transition: 0.3s;
-    z-index: 999;
-    font-size: 1.2rem;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-}
-
-#to-top.show {
-    opacity: 1;
-    visibility: visible;
-}
-
-/* UTILITIES: MODALS */
+/* MODALS (Map & Lightbox) */
 .lightbox,
 .map-modal {
     position: fixed;
@@ -536,41 +523,17 @@ footer a {
     border: none;
 }
 
-
-
-/* Etusivun yksinäisen kuvan tyylittely */
-.hero-image.single-image {
-    flex: 0 1 900px;
-    /* Rajoittaa kuvan maksimileveyttä */
-    margin: 0 auto;
-    /* Keskittää kuvan */
-    max-height: 60vh;
-    /* Estää kuvaa olemasta liian korkea */
+#contact-info button.open-map {
+    background: none;
+    border: 1px solid var(--primary);
+    color: var(--primary);
+    padding: 0.3rem 0.8rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    margin-left: 0.5rem;
 }
 
-/* Varmistetaan, että kuva täyttää raaminsa nätisti */
-.hero-image.single-image img {
-    object-fit: cover;
-    width: 100%;
-    height: 100%;
-}
-
-
-.tuote-video {
-    width: 100%;
-
-    /* Koska kyseessä on pystyvideo, rajoitetaan leveyttä enemmän */
-    max-width: 360px;
-
-    /* TÄMÄ ON TÄRKEIN: Pakotetaan video pysymään pystymuodossa (9:16) */
-    aspect-ratio: 9 / 16;
-
-    /* Tämä varmistaa, että aloituskuva täyttää koko alan ilman mustia reunoja */
-    object-fit: cover;
-
-    border-radius: 1rem;
-    display: block;
-    margin: 0 auto;
-    /* Keskitys */
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+#contact-info button.open-map:hover {
+    background: var(--primary);
+    color: white;
 }

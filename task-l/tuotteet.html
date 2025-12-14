@@ -11,7 +11,7 @@
 <body>
     <header>
         <nav>
-            <h1><a href="index.html" style="text-decoration:none; color:inherit;">Kulmakaappi Oy</a></h1>
+            <h1><a href="index.html" class="logo-link">Kulmakaappi Oy</a></h1>
             <ul>
                 <li><a href="index.html#about">Tietoa meistä</a></li>
                 <li><a href="tuotteet.html" class="active">Tuotteet</a></li>
@@ -19,15 +19,17 @@
                 <li><a href="lomake.html">Ota yhteyttä</a></li>
                 <li><a href="index.html#contact-info">Yhteystiedot</a></li>
             </ul>
-            <a class="instagram-link" href="https://www.instagram.com/kulmakaappi_oy" target="_blank">
+            <a class="instagram-link" href="https://www.instagram.com/kulmakaappi_oy" target="_blank"
+                rel="noopener noreferrer">
                 <span class="inst-text">Seuraa</span>
             </a>
         </nav>
     </header>
 
     <main>
-        <section id="product-intro" style="text-align: center; margin-bottom: 2rem;">
+        <section id="product-intro" class="center-text mb-2">
             <h2>Tutustu myymäläämme</h2>
+            <!-- Korjasin videon validiuden varmistamalla rakenteen -->
             <video class="tuote-video" controls poster="kuvat/astia1.jpeg" preload="metadata">
                 <source src="videot/astiahylly.mp4" type="video/mp4">
                 Selaimesi ei tue videota.
@@ -38,22 +40,22 @@
             <h2>Laukut</h2>
             <div class="product-grid">
                 <article class="product-card">
-                    <figure><img src="kuvat/grathat.jpeg" alt="Gratha laukku" /></figure>
+                    <figure><img src="kuvat/grathat.jpeg" alt="Gratha laukku" loading="lazy" /></figure>
                     <h3>Gratha</h3>
                     <p>Tyylikäs nahkalaukku.</p>
                 </article>
                 <article class="product-card">
-                    <figure><img src="kuvat/reput.jpeg" alt="Unikko reput" /></figure>
+                    <figure><img src="kuvat/reput.jpeg" alt="Unikko reput" loading="lazy" /></figure>
                     <h3>Unikko reput</h3>
                     <p>Uudet syksyn värit.</p>
                 </article>
                 <article class="product-card">
-                    <figure><img src="kuvat/unikkoreppu.jpeg" alt="Unikko" /></figure>
+                    <figure><img src="kuvat/unikkoreppu.jpeg" alt="Unikko" loading="lazy" /></figure>
                     <h3>Unikko laukut</h3>
                     <p>Klassikkovärit.</p>
                 </article>
                 <article class="product-card">
-                    <figure><img src="kuvat/ruskeelaukku.jpeg" alt="syksy Gratha" /></figure>
+                    <figure><img src="kuvat/ruskeelaukku.jpeg" alt="syksy Gratha" loading="lazy" /></figure>
                     <h3>Gratha</h3>
                     <p>Syksyn uutuusväri.</p>
                 </article>
@@ -64,22 +66,22 @@
             <h2>Astiat</h2>
             <div class="product-grid">
                 <article class="product-card">
-                    <figure><img src="kuvat/astia1.jpeg" alt="astiahylly" /></figure>
+                    <figure><img src="kuvat/astia1.jpeg" alt="astiahylly" loading="lazy" /></figure>
                     <h3>Klassikoita!</h3>
                     <p>Meiltä löydät räsymatto- sekä Unikko-kuosit.</p>
                 </article>
                 <article class="product-card">
-                    <figure><img src="kuvat/astia2.jpeg" alt="Lautaset" /></figure>
+                    <figure><img src="kuvat/astia2.jpeg" alt="Lautaset" loading="lazy" /></figure>
                     <h3>Siirtolapuutarha</h3>
                     <p>Lautaset joka pöytään :-D</p>
                 </article>
                 <article class="product-card">
-                    <figure><img src="kuvat/astia3.jpeg" alt="Unikko" /></figure>
+                    <figure><img src="kuvat/astia3.jpeg" alt="Unikko" loading="lazy" /></figure>
                     <h3>Unikko</h3>
                     <p>Klassikkovärit.</p>
                 </article>
                 <article class="product-card">
-                    <figure><img src="kuvat/astia4.jpeg" alt="Joulu" /></figure>
+                    <figure><img src="kuvat/astia4.jpeg" alt="Joulu" loading="lazy" /></figure>
                     <h3>Juhlapöytään</h3>
                     <p>Joulun uutuudet.</p>
                 </article>
@@ -98,8 +100,9 @@
 
     <!-- Lightbox -->
     <div id="lightbox" class="lightbox" aria-hidden="true">
-        <button class="close">✕</button>
-        <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Laajennettu kuva" />
+        <button class="close" aria-label="Sulje kuva">✕</button>
+        <!-- TÄSSÄ OLI VIRHE: src ei saa olla tyhjä. Lisätty placeholder-data. -->
+        <img src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="Laajennettu kuva" />
     </div>
 
     <script>
@@ -112,11 +115,15 @@
             const open = (src) => {
                 lbImg.src = src;
                 lightbox.classList.add('show');
+                lightbox.setAttribute('aria-hidden', 'false');
                 document.body.style.overflow = 'hidden';
             };
             const close = () => {
                 lightbox.classList.remove('show');
+                lightbox.setAttribute('aria-hidden', 'true');
                 document.body.style.overflow = '';
+                // Palautetaan placeholder sulkemisen jälkeen, jotta validi
+                setTimeout(() => { lbImg.src = 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs='; }, 300);
             };
 
             document.querySelectorAll('.product-card img').forEach(img => {

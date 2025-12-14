@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="fi">
-
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -11,7 +10,7 @@
 <body>
     <header>
         <nav>
-            <h1><a href="index.html" style="text-decoration:none; color:inherit;">Kulmakaappi Oy</a></h1>
+            <h1><a href="index.html" class="logo-link">Kulmakaappi Oy</a></h1>
             <ul>
                 <li><a href="index.html#about">Tietoa meistä</a></li>
                 <li><a href="tuotteet.html">Tuotteet</a></li>
@@ -19,41 +18,65 @@
                 <li><a href="lomake.html" class="active">Ota yhteyttä</a></li>
                 <li><a href="index.html#contact-info">Yhteystiedot</a></li>
             </ul>
-            <a class="instagram-link" href="https://www.instagram.com/kulmakaappi_oy" target="_blank">
+            <a class="instagram-link" href="https://www.instagram.com/kulmakaappi_oy" target="_blank" rel="noopener noreferrer">
                 <span class="inst-text">Seuraa</span>
             </a>
         </nav>
     </header>
 
     <main>
-        <!-- Tässä on siirretty lomake-osio -->
         <section id="cta">
             <h2>Ota yhteyttä</h2>
             <p>Onko sinulla kysyttävää tuotteistamme tai palveluistamme? Lähetä meille viesti!</p>
             <br>
-            <form id="contact-form" action="#" method="post" novalidate>
+            
+            <form id="contact-form" action="#" method="post">
                 <div class="form-grid">
+                    <!-- Text Input -->
                     <div class="form-row">
                         <label for="name">Nimi <span class="required">*</span></label>
                         <input id="name" name="name" type="text" required />
                     </div>
 
+                    <!-- Tel Input -->
                     <div class="form-row">
                         <label for="phone">Puhelinnumero</label>
                         <input id="phone" name="phone" type="tel" pattern="[0-9+\s-]+" placeholder="+358 40 123 4567" />
                     </div>
 
+                    <!-- Email Input -->
                     <div class="form-row">
                         <label for="email">Sähköposti <span class="required">*</span></label>
                         <input id="email" name="email" type="email" required />
                     </div>
 
-                    <div class="form-row full">
-                        <label for="message">Viesti (valinnainen)</label>
-                        <textarea id="message" name="message" rows="4"
-                            placeholder="Kirjoita viestisi tähän..."></textarea>
+                    <!-- UUSI KOHTA: Select (Pudotusvalikko) -->
+                    <div class="form-row">
+                        <label for="subject">Aihe <span class="required">*</span></label>
+                        <select id="subject" name="subject" required>
+                            <option value="" disabled selected>Valitse aihe...</option>
+                            <option value="tuotteet">Tuotetiedustelu</option>
+                            <option value="ompelu">Ompelupalvelu</option>
+                            <option value="palaute">Palaute</option>
+                            <option value="muu">Muu asia</option>
+                        </select>
                     </div>
 
+                    <!-- Textarea -->
+                    <div class="form-row full">
+                        <label for="message">Viesti (valinnainen)</label>
+                        <textarea id="message" name="message" rows="4" placeholder="Kirjoita viestisi tähän..."></textarea>
+                    </div>
+
+                    <!-- UUSI KOHTA: Checkbox (Valintaruutu) -->
+                    <div class="form-row full checkbox-row">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="newsletter" value="yes">
+                            Haluan tilata Kulmakaapin uutiskirjeen
+                        </label>
+                    </div>
+
+                    <!-- Submit Button -->
                     <div class="form-row form-actions full">
                         <button type="submit">Lähetä</button>
                     </div>
@@ -70,6 +93,15 @@
             </ul>
         </nav>
     </footer>
-</body>
 
+    <script>
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault(); 
+            if(this.checkValidity()) {
+                alert('Kiitos viestistäsi! Palaamme asiaan mahdollisimman pian.');
+                this.reset();
+            }
+        });
+    </script>
+</body>
 </html>

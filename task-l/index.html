@@ -11,7 +11,7 @@
 <body>
     <header>
         <nav>
-            <h1><a href="index.html" style="text-decoration:none; color:inherit;">Kulmakaappi Oy</a></h1>
+            <h1><a href="index.html" class="logo-link">Kulmakaappi Oy</a></h1>
             <ul>
                 <li><a href="index.html#about">Tietoa meistä</a></li>
                 <li><a href="tuotteet.html">Tuotteet</a></li>
@@ -36,14 +36,11 @@
         <section id="hero">
             <h2>Laadukasta designia Kokkolan ytimessä.</h2>
             <p>Tule vierailulle ja ihastu!</p>
-
             <div class="hero-media">
-                <!-- Video poistettu täältä, vain kuva jäljellä -->
                 <figure class="hero-image single-image">
                     <img src="kuvat/firma.jpeg" alt="Kulmakaapin näyteikkuna" loading="lazy" />
                 </figure>
             </div>
-            <!-- Painike poistettu täältä -->
         </section>
 
         <section id="about">
@@ -60,8 +57,7 @@
                 </video>
             </div>
 
-            <!-- Painike siirretty tänne About-osion loppuun -->
-            <div style="text-align: center; margin-top: 3rem;">
+            <div class="cta-container">
                 <a href="tuotteet.html" class="hero-cta">Katso tuotteet</a>
             </div>
         </section>
@@ -80,19 +76,23 @@
 
         <section id="contact-info">
             <h2>Yhteystiedot</h2>
-            <p><strong>Osoite:</strong> Tehtaankatu 2b, 67100 Kokkola
-                <button class="open-map" data-address="Tehtaankatu 2b, 67100 Kokkola">Näytä reitti</button>
-            </p>
-            <div class="opening-hours">
-                <h3>Aukioloajat</h3>
-                <ul>
-                    <li><strong>Ma–Pe:</strong> 10:00–17:00</li>
-                    <li><strong>La:</strong> 10:00–15:00</li>
-                    <li><strong>Su:</strong> Suljettu</li>
-                </ul>
+            <div class="contact-details">
+                <p><strong>Osoite:</strong> Tehtaankatu 2b, 67100 Kokkola
+                    <button class="open-map" data-address="Tehtaankatu 2b, 67100 Kokkola">Näytä reitti</button>
+                </p>
+                <div class="opening-hours">
+                    <h3>Aukioloajat</h3>
+                    <ul>
+                        <li><strong>Ma–Pe:</strong> 10:00–17:00</li>
+                        <li><strong>La:</strong> 10:00–15:00</li>
+                        <li><strong>Su:</strong> Suljettu</li>
+                    </ul>
+                </div>
+                <!-- Links make these clickable on mobile -->
+                <p><strong>Puhelin:</strong> <a href="tel:+358453191110">+358 45 3191110</a></p>
+                <p><strong>Sähköposti:</strong> <a
+                        href="mailto:kulmakaappi@kulmakaappi.fi">kulmakaappi@kulmakaappi.fi</a></p>
             </div>
-            <p><strong>Puhelin:</strong> +358 45 3191110</p>
-            <p><strong>Sähköposti:</strong> kulmakaappi@kulmakaappi.fi</p>
         </section>
     </main>
 
@@ -108,8 +108,9 @@
 
     <!-- Map Modal -->
     <div id="map-modal" class="map-modal" aria-hidden="true">
-        <div class="map-modal-content"><button class="map-close">✕</button>
-            <div class="map-wrapper"><iframe src="about:blank" title="Kartta"></iframe></div>
+        <div class="map-modal-content">
+            <button class="map-close" aria-label="Sulje kartta">✕</button>
+            <div class="map-wrapper"><iframe src="about:blank" title="Kartta" loading="lazy"></iframe></div>
         </div>
     </div>
 
@@ -124,10 +125,16 @@
             openButtons.forEach(btn => btn.addEventListener('click', () => {
                 iframe.src = `https://www.google.com/maps?q=${encodeURIComponent(btn.dataset.address)}&output=embed`;
                 modal.classList.add('show');
+                modal.setAttribute('aria-hidden', 'false');
             }));
-            const close = () => { modal.classList.remove('show'); iframe.src = ''; };
+            const close = () => {
+                modal.classList.remove('show');
+                modal.setAttribute('aria-hidden', 'true');
+                iframe.src = '';
+            };
             closeBtn.addEventListener('click', close);
             modal.addEventListener('click', (e) => { if (e.target === modal) close(); });
+            document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
         });
     </script>
 </body>
